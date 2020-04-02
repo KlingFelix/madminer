@@ -257,7 +257,10 @@ def plot_fisherinfo_barplot(
     size_lower = len(matrices_for_determinants[1])
     exponent_lower = 1.0 / float(size_lower)
 
-    determinants = [np.linalg.det(m) ** exponent_lower for m in matrices_for_determinants]
+    if exponent_lower==1:
+        determinants = [float(m) for m in matrices_for_determinants]
+    else:
+        determinants = [np.linalg.det(m) ** exponent_lower for m in matrices_for_determinants]
 
     assert len(determinants) == len(labels)
     n_entries = len(determinants)
